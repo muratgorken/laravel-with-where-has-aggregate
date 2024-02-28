@@ -3,9 +3,14 @@
     "description": "A package that ensures compatibility between the 'withWhereHas' method and the 'withAggregate' methods",
     "type": "service-provider",
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Muratgorken\\LaravelWithWhereHasAggregate\\": "src/"
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MuratGorken\\LaravelWithWhereHasAggregate\\LaravelWithWhereHasAggregateServiceProvider"
+            ],
+            "aliases": {
+								"WithWhereHasAggregate": "MuratGorken\\LaravelWithWhereHasAggregate\\Facades\\WithWhereHasAggregate"
+            }
         }
     },
     "authors": [
@@ -15,5 +20,8 @@
         }
     ],
     "minimum-stability": "alpha",
-    "require": {}
+		"require": {
+			"php": ">=7.1.0",
+			"laravel/framework": ">5.0"
+		}
 }
