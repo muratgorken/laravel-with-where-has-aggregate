@@ -1,0 +1,19 @@
+{
+    "name": "muratgorken/laravel-with-where-has-aggregate",
+    "description": "A package that ensures compatibility between the 'withWhereHas' method and the 'withAggregate' methods",
+    "type": "service-provider",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Muratgorken\\LaravelWithWhereHasAggregate\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Murat Görken",
+            "email": "muratgorken1993@gmail.com"
+        }
+    ],
+    "minimum-stability": "alpha",
+    "require": {}
+}
