@@ -1,6 +1,6 @@
 <?php
 
-namespace Muratgorken\LaravelWithWhereHasAggregate;
+namespace Muratgorken\LaravelWithWhereHasAggregate\src;
 
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\ServiceProvider;
