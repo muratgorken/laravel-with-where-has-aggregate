@@ -2,6 +2,7 @@
 
 namespace Muratgorken\LaravelWithWhereHasAggregate;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\ServiceProvider;
 use Str;
@@ -24,7 +25,7 @@ class WithWhereHasAggregateServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
-		Builder::macro("withWhereHasAggregate", function (
+		Builder::macro('withWhereHasAggregate', function (
 			$relation,
 			$constraint,
 			...$aggregates
@@ -44,7 +45,7 @@ class WithWhereHasAggregateServiceProvider extends ServiceProvider
 			return $returnable;
 		});
 
-		Builder::macro("withHasAggregate", function (
+		Builder::macro('withHasAggregate', function (
 			$relations,
 			$column,
 			$wheres = null
@@ -54,7 +55,7 @@ class WithWhereHasAggregateServiceProvider extends ServiceProvider
 			}
 
 			if (is_null($this->query->columns)) {
-				$this->query->select([$this->query->from . ".*"]);
+				$this->query->select([$this->query->from.'.*']);
 			}
 
 			$relations = is_array($relations) ? $relations : [$relations];
@@ -66,14 +67,14 @@ class WithWhereHasAggregateServiceProvider extends ServiceProvider
 				// the resulting column. This allows multiple aggregates on the same relationships.
 
 				// min(column) as alias
-				$segments = explode(" ", $column);
+				$segments = explode(' ', $column);
 
 				if (
-					count($segments) === 3 &&
-					Str::lower($segments[1]) === "as"
+					count($segments)         === 3 &&
+					Str::lower($segments[1]) === 'as'
 				) {
-					$function = explode("(", $segments[0])[0];
-					$column = explode(")", explode("(", $segments[0])[1])[0];
+					$function = explode('(', $segments[0])[0];
+					$column = explode(')', explode('(', $segments[0])[1])[0];
 					$alias = $segments[2];
 				}
 
@@ -88,16 +89,16 @@ class WithWhereHasAggregateServiceProvider extends ServiceProvider
 					$wrappedColumn = $this->getQuery()
 						->getGrammar()
 						->wrap(
-							$column === "*"
+							$column === '*'
 								? $column
 								: $relation
-								->getRelated()
-								->qualifyColumn($hashedColumn)
+									->getRelated()
+									->qualifyColumn($hashedColumn)
 						);
 					$expression =
-						$function === "exists"
+						$function === 'exists'
 						? $wrappedColumn
-						: sprintf("%s(%s)", $function, $wrappedColumn);
+						: sprintf('%s(%s)', $function, $wrappedColumn);
 				} else {
 					$expression = $column;
 				}
@@ -111,7 +112,7 @@ class WithWhereHasAggregateServiceProvider extends ServiceProvider
 						$this,
 						new Expression($expression)
 					)
-					->setBindings([], "select");
+					->setBindings([], 'select');
 
 				$query->callScope($constraints);
 
@@ -127,11 +128,11 @@ class WithWhereHasAggregateServiceProvider extends ServiceProvider
 				// then we will remove those elements from the query so that it will execute properly
 				// when given to the database. Otherwise, we may receive SQL errors or poor syntax.
 				$query->orders = null;
-				$query->setBindings([], "order");
+				$query->setBindings([], 'order');
 
 				if (count($query->columns) > 1) {
 					$query->columns = [$query->columns[0]];
-					$query->bindings["select"] = [];
+					$query->bindings['select'] = [];
 				}
 
 				// Finally, we will make the proper column alias to the query and run this sub-select on
@@ -139,21 +140,21 @@ class WithWhereHasAggregateServiceProvider extends ServiceProvider
 				// for further constraint chaining that needs to take place on the query as needed.
 				$alias ??= Str::snake(
 					preg_replace(
-						"/[^[:alnum:][:space:]_]/u",
-						"",
+						'/[^[:alnum:][:space:]_]/u',
+						'',
 						"$name $function $column"
 					)
 				);
 
-				if ($function === "exists") {
+				if ($function === 'exists') {
 					$this->selectRaw(
 						sprintf(
-							"exists(%s) as %s",
+							'exists(%s) as %s',
 							$query->toSql(),
 							$this->getQuery()->grammar->wrap($alias)
 						),
 						$query->getBindings()
-					)->withCasts([$alias => "bool"]);
+					)->withCasts([$alias => 'bool']);
 				} else {
 					$this->selectSub(
 						$function ? $query : $query->limit(1),

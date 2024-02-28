@@ -1,24 +1,29 @@
 {
-    "name": "muratgorken/laravel-with-where-has-aggregate",
-    "description": "A package that ensures compatibility between the 'withWhereHas' method and the 'withAggregate' methods",
-    "type": "service-provider",
-    "license": "MIT",
-    "extra": {
-        "laravel": {
-            "providers": [
-                "MuratGorken\\LaravelWithWhereHasAggregate\\WithWhereHasAggregateServiceProvider"
-            ]
-        }
-    },
-    "authors": [
-        {
-            "name": "Murat Görken",
-            "email": "muratgorken1993@gmail.com"
-        }
-    ],
-    "minimum-stability": "alpha",
-		"require": {
-			"php": ">=7.1.0",
-			"laravel/framework": ">5.0"
-		}
+	"name": "muratgorken/laravel-with-where-has-aggregate",
+	"description": "A package that ensures compatibility between the 'withWhereHas' method and the 'withAggregate' methods",
+	"type": "service-provider",
+	"license": "MIT",
+	"autoload": {
+			"psr-4": {
+					"MuratGorken\\LaravelWithWhereHasAggregate\\": "src/"
+			}
+	},
+	"extra": {
+			"laravel": {
+					"providers": [
+							"MuratGorken\\LaravelWithWhereHasAggregate\\LaravelWithWhereHasAggregateServiceProvider"
+					]
+			}
+	},
+	"authors": [
+			{
+					"name": "Murat Görken",
+					"email": "muratgorken1993@gmail.com"
+			}
+	],
+	"minimum-stability": "alpha",
+	"require": {
+		"php": ">=7.1.0",
+		"laravel/framework": ">5.0"
+	}
 }
