@@ -6,11 +6,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "MuratGorken\\LaravelWithWhereHasAggregate\\LaravelWithWhereHasAggregateServiceProvider"
-            ],
-            "aliases": {
-								"WithWhereHasAggregate": "MuratGorken\\LaravelWithWhereHasAggregate\\Facades\\WithWhereHasAggregate"
-            }
+                "MuratGorken\\LaravelWithWhereHasAggregate\\src\\WithWhereHasAggregateServiceProvider"
+            ]
         }
     },
     "authors": [
