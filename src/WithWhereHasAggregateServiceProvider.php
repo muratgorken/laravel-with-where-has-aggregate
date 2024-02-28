@@ -1,12 +1,12 @@
 <?php
 
-namespace Muratgorken\LaravelWithWhereHasAggregate\src;
+namespace Muratgorken\LaravelWithWhereHasAggregate;
 
 use Illuminate\Database\Query\Expression;
 use Illuminate\Support\ServiceProvider;
 use Str;
 
-class WithWhereHasAggregateProvider extends ServiceProvider
+class WithWhereHasAggregateServiceProvider extends ServiceProvider
 {
 	/**
 	 * Register services.

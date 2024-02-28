@@ -6,7 +6,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "MuratGorken\\LaravelWithWhereHasAggregate\\src\\WithWhereHasAggregateServiceProvider"
+                "MuratGorken\\LaravelWithWhereHasAggregate\\WithWhereHasAggregateServiceProvider"
             ]
         }
     },
